@@ -30,6 +30,8 @@ def load_config(path):
 ## Project config loader
 @dataclass
 class ProjectConfigWordWare:
+    # Delete this once stub is integrated
+    dummy_prompt: str
     propose_prompt: str
     query_prompt: str
     respond_prompt: str
