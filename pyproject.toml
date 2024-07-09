@@ -1,5 +1,6 @@
 [tool.poetry]
 name = "multi-agent-page-sorter"
+package-mode=false
 version = "0.1.0"
 description = "Coordinates multiple LLMs to sort an unordered collection of pages."
 authors = ["Samuel Gillespie <samuel.gillespie@sydney.edu.au>"]
