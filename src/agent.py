@@ -6,6 +6,7 @@ class Agent:
         self.llm = llm
         self.consortium = consortium
 
+    #Respond with a tuple of the form id:message
     def step():
         pass
     
