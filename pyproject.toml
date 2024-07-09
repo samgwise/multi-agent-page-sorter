@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "multi-agent-page-sorter"
+version = "0.1.0"
+description = "Coordinates multiple LLMs to sort an unordered collection of pages."
+authors = ["Samuel Gillespie <samuel.gillespie@sydney.edu.au>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

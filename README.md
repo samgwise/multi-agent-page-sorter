@@ -1,2 +1,11 @@
 # multi-agent-page-sorter
-Coordinates mulitple LLMs to sort an unorderd collection of pages.
+
+> *The page consortium*
+
+Coordinates multiple LLMs to sort an unordered collection of pages.
+
+## Setup
+
+requires poetry - see poetry docs (but perhaps just try `pip install poetry`). This is for managing python virtual environments.
+
+
