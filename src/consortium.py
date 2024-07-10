@@ -6,6 +6,10 @@ class Consortium:
         self.history = [(-1,"START")]
         self.solution = self.init_solution(len(pages))
 
+    def run(self):
+        while not(self.has_solution()):
+            self.step()
+
     def step(self):
         selected_agent = self.select_agent()
         self.update_history(selected_agent.step())

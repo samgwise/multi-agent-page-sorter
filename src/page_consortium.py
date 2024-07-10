@@ -32,8 +32,23 @@ print("Hi")
 
 project_config = load_project_config();
 
-print(vars(project_config))
+#print(vars(project_config))
 
-project_config = load_credentials_config();
+project_credentials = load_credentials_config();
 
-print(vars(project_config))
+#print(vars(project_credentials))
+
+from llm import LLM
+from consortium import Consortium
+llm = LLM(project_credentials,project_config)
+print(llm._call_wordware("dummy_prompt", {"topic":"bees"}))
+
+pages = [
+    "This is the first page.",
+    "This is the second page.",
+    "This is the third page.",
+]
+
+consortium = Consortium(pages,llm)
+
+consortium.run()

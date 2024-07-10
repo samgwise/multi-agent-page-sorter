@@ -15,11 +15,11 @@ class LLM:
             raise NotImplementedError
 
     def _call_wordware(self, prompt, inputs, output="result"):
-        r = requests.post(f"https://app.wordware.ai/api/prompt/{self.configuration['wordware'][prompt]}/run",
+        r = requests.post(f"https://app.wordware.ai/api/prompt/{self.configuration.wordware.getattr(prompt)}/run",
                         json={
                             "inputs": inputs
                         },
-                        headers={"Authorization": f"Bearer {self.credentials['wordware']['api_key']}"},
+                        headers={"Authorization": f"Bearer {self.credentials.wordware.getattr('api_key')}"},
                         stream=False
                         )
         if r.status_code != 200:
