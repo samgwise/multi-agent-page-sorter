@@ -20,8 +20,21 @@ class Consortium:
     def update_history(self,message):
         self.history.append(message)
 
+    #Returns a flat string version of the history to be used as input for LLMs.
+    def get_flat_history(self):
+        flat_history = []
+        for id,event in self.history:
+            if type(event) is str: #We're dealing with a proposal.
+                flat_history.append(f"AGENT {id} PROPOSED: {event}")
+            else: #We're dealing with a query.
+                flat_history.append(f"AGENT {id} ASKED: {event['query']}")
+                for response in event["responses"]:
+                    flat_history.append(f"  * AGENT {id} ANSWERED: {response}")
+        return "\n".join(flat_history)
+
+    #This is a stub, we'll have to implement this at some point.
     def has_solution(self):
-        pass
+        return len(self.history) > 20
 
     def init_solution(self):
         pass

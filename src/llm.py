@@ -6,9 +6,13 @@ from config import ProjectConfigWordWare, CredentialsWordWare
 
 class LLM:
 
-    def __init__(self, credentials, project_config):
+    def __init__(self, credentials, project_config, engine="wordware"):
         self.credentials = credentials
         self.configuration = project_config
+        if engine=="wordware":
+            self.call = self._call_wordware
+        else:
+            raise NotImplementedError
 
     def _call_wordware(self, prompt, inputs, output="result"):
         r = requests.post(f"https://app.wordware.ai/api/prompt/{self.configuration['wordware'][prompt]}/run",
