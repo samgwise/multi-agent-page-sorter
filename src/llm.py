@@ -17,7 +17,7 @@ class LLM:
         self.configuration = project_config
 
     # Internal request method
-    def _llm_request(self, prompt_id, json_body: dict):
+    def _llm_request(self, prompt_id: str, json_body: dict):
         # topic = "bees"
         # Execute the prompt
         r = requests.post(
@@ -60,7 +60,19 @@ class LLM:
 
     # Stubs for primary prompts
 
-    def decide_prompt(self, agent_id, history, page):
+    def decide_prompt(self, agent_id: int, history: str, page: str):
+        return self._llm_request(
+            self.configuration.decide_prompt,
+            {
+                "inputs": {
+                    "agent_id": agent_id,
+                    "history": history,
+                    "page": page,
+                }
+            },
+        )
+
+    def propose_prompt(self, agent_id: int, history: str, page: str):
         return self._llm_request(
             self.configuration.propose_prompt,
             {
@@ -68,6 +80,31 @@ class LLM:
                     "agent_id": agent_id,
                     "history": history,
                     "page": page,
+                }
+            },
+        )
+
+    def query_prompt(self, agent_id: int, history: str, page: str):
+        return self._llm_request(
+            self.configuration.query_prompt,
+            {
+                "inputs": {
+                    "agent_id": agent_id,
+                    "history": history,
+                    "page": page,
+                }
+            },
+        )
+
+    def respond_prompt(self, agent_id: int, history: str, page: str, query: str):
+        return self._llm_request(
+            self.configuration.respond_prompt,
+            {
+                "inputs": {
+                    "agent_id": agent_id,
+                    "history": history,
+                    "page": page,
+                    "query": query,
                 }
             },
         )

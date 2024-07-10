@@ -6,7 +6,7 @@ from dataclasses import dataclass
 
 
 ## Generic config loader
-def load_config(path):
+def load_config(path: str):
     with open(path, "rb") as conf:
         return tomllib.load(conf)
 
@@ -16,6 +16,7 @@ def load_config(path):
 class ProjectConfigWordWare:
     # Delete this once stub is integrated
     dummy_prompt: str
+    decide_prompt: str
     propose_prompt: str
     query_prompt: str
     respond_prompt: str

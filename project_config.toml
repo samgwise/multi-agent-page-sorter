@@ -1,5 +1,6 @@
 [wordware]
 dummy_prompt = "4a5ae118-7f00-43a1-9afc-0e1efea54d1a"
+decide_prompt = ""
 propose_prompt = ""
 query_prompt = ""
 respond_prompt = ""
