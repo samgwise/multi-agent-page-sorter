@@ -59,3 +59,17 @@ class LLM:
                 }
             }
         )
+    
+    # Stubs for primary prompts
+
+    def decide_prompt(self, agent_id, history, page):
+        return self._llm_request(
+            self.configuration.propose_prompt,
+            {
+                "inputs": {
+                    "agent_id": agent_id,
+                    "history": history,
+                    "page": page,
+                }
+            }
+        )
