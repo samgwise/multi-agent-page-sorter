@@ -41,7 +41,7 @@ project_credentials = load_credentials_config()
 
 
 llm = LLM(project_credentials.wordware, project_config.wordware)
-print( llm.dummy_prompt("bees") )
+print(llm.dummy_prompt("bees"))
 
 pages = [
     "This is the first page.",
