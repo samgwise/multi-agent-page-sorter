@@ -50,8 +50,8 @@ class LLM:
                         #print(json.dumps(value, indent=4))
                         return json.dumps(value["values"]["result"])
 
-    def dummy_request(self, topic = "bees"):
-        return self._request(
+    def dummy_prompt(self, topic = "bees"):
+        return self._llm_request(
             self.configuration.dummy_prompt,
             {
                 "inputs": {

@@ -11,13 +11,14 @@
 #
 
 # Core #
-from dataclasses import dataclass
 
 # Ecosystem #
 
 # Project #
 
-from config import *
+from config import load_project_config, load_credentials_config
+from llm import LLM
+from consortium import Consortium
 
 #
 # Defs
@@ -28,20 +29,19 @@ from config import *
 # MAIN
 #
 
-print("Hi")
+# print("Hi")
 
-project_config = load_project_config();
+project_config = load_project_config()
 
-#print(vars(project_config))
+# print(vars(project_config))
 
-project_credentials = load_credentials_config();
+project_credentials = load_credentials_config()
 
-#print(vars(project_credentials))
+# print(vars(project_credentials))
 
-from llm import LLM
-from consortium import Consortium
-llm = LLM(project_credentials,project_config)
-print(llm._call_wordware("dummy_prompt", {"topic":"bees"}))
+
+llm = LLM(project_credentials.wordware, project_config.wordware)
+print( llm.dummy_prompt("bees") )
 
 pages = [
     "This is the first page.",
@@ -49,6 +49,6 @@ pages = [
     "This is the third page.",
 ]
 
-consortium = Consortium(pages,llm)
+consortium = Consortium(pages, llm)
 
 consortium.run()
