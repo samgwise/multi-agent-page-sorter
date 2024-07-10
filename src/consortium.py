@@ -26,10 +26,10 @@ class Consortium:
         self.history.append(message)
 
     # Returns a flat string version of the history to be used as input for LLMs.
-    def get_flat_history(self):
+    def flat_history(self) -> str:
         flat_history = []
         for id, event in self.history:
-            if type(event) is str:  # We're dealing with a proposal.
+            if isinstance(event, str):  # We're dealing with a proposal.
                 flat_history.append(f"AGENT {id} PROPOSED: {event}")
             else:  # We're dealing with a query.
                 flat_history.append(f"AGENT {id} ASKED: {event['query']}")

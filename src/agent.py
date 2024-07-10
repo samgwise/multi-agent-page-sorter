@@ -1,8 +1,10 @@
 import random
+from llm import LLM
+from consortium import Consortium
 
 
 class Agent:
-    def __init__(self, id, page, llm, consortium):
+    def __init__(self, id: int, page: str, llm: LLM, consortium: Consortium):
         self.id = id
         self.page = page
         self.llm = llm
@@ -14,29 +16,23 @@ class Agent:
         return self.query()
 
     def propose(self):
-        inputs = {
-            "id": self.id,
-            "page": self.page,
-            "history": self.consortium.get_flat_history(),
-        }
-        return (self.id, self.llm.call("propose_prompt", inputs))
+        return (
+            self.id,
+            self.llm.propose_prompt(self.id, self.page, self.consortium.flat_history()),
+        )
 
     def query(self):
-        inputs = {
-            "id": self.id,
-            "page": self.page,
-            "history": self.consortium.get_flat_history(),
-        }
-        query = self.llm.call("query_prompt", inputs)
+        query = self.llm.query_prompt(
+            self.id, self.consortium.flat_history(), self.page
+        )
         answers = self.consortium.query(query, self.id)
         return (self.id, {"query": query, "responses": answers})
 
     # respond is not called during your step, it's called during someone else's, via consortium.query
     def respond(self, query):
-        inputs = {
-            "query": query,
-            "id": self.id,
-            "page": self.page,
-            "history": self.consortium.get_flat_history(),
-        }
-        return (self.id, self.llm.call("respond_prompt", inputs))
+        return (
+            self.id,
+            self.llm.respond_prompt(
+                self.id, self.consortium.flat_history(), self.page, query
+            ),
+        )
