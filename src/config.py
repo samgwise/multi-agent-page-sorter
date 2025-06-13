@@ -13,39 +13,42 @@ def load_config(path: str):
 
 ## Project config loader
 @dataclass
-class ProjectConfigWordWare:
-    # Delete this once stub is integrated
-    dummy_prompt: str
-    decide_prompt: str
-    propose_prompt: str
-    query_prompt: str
-    respond_prompt: str
+class DiscussionPromptsConfig:
+    decide: str
+    propose: str
+    query: str
+    respond: str
 
+@dataclass
+class initialPromptsConfig:
+    all: str
 
 @dataclass
 class ProjectConfig:
-    wordware: ProjectConfigWordWare
+    discussion_prompts: DiscussionPromptsConfig
+    initial_prompts: initialPromptsConfig
 
     def __post_init__(self):
-        self.wordware = ProjectConfigWordWare(**self.wordware)
+        self.discussion_prompts = DiscussionPromptsConfig(**self.discussion_prompts)
+        self.initial_prompts = initialPromptsConfig(**self.initial_prompts)
 
 
 def load_project_config():
-    return ProjectConfig(**load_config("project_config.toml"))
+    return ProjectConfig(**load_config("default_prompts.toml"))
 
 
 ## credentials loader
 @dataclass
-class CredentialsWordWare:
+class CredentialsConfig:
     api_key: str
 
 
 @dataclass
 class Credentials:
-    wordware: CredentialsWordWare
+    llm: CredentialsConfig
 
     def __post_init__(self):
-        self.wordware = CredentialsWordWare(**self.wordware)
+        self.llm = CredentialsConfig(**self.llm)
 
 
 def load_credentials_config():

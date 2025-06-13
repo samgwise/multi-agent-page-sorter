@@ -1,21 +1,22 @@
-[tool.poetry]
+[project]
 name = "multi-agent-page-sorter"
-package-mode=false
 version = "0.1.0"
 description = "Coordinates multiple LLMs to sort an unordered collection of pages."
-authors = ["Samuel Gillespie <samuel.gillespie@sydney.edu.au>"]
-license = "MIT"
+authors = [{ name = "Samuel Gillespie", email = "samuel.gillespie@sydney.edu.au" }]
+requires-python = "~=3.11"
 readme = "README.md"
+license = "MIT"
+dependencies = [
+    "toml>=0.10.2,<0.11",
+    "requests>=2.32.3,<3",
+]
 
-[tool.poetry.dependencies]
-python = "^3.11"
-toml = "^0.10.2"
-requests = "^2.32.3"
+[dependency-groups]
+dev = ["ruff>=0.5.1,<0.6"]
 
-
-[tool.poetry.group.dev.dependencies]
-ruff = "^0.5.1"
+[tool.uv]
+package = false
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"

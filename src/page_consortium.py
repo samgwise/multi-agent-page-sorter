@@ -40,7 +40,7 @@ project_credentials = load_credentials_config()
 # print(vars(project_credentials))
 
 
-llm = LLM(project_credentials.wordware, project_config.wordware)
+llm = LLM(project_credentials.llm, project_config.prompts)
 print(llm.dummy_prompt("bees"))
 
 pages = [

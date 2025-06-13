@@ -6,12 +6,12 @@ import json
 
 import requests
 
-from config import ProjectConfigWordWare, CredentialsWordWare
+from config import PromptsConfig, CredentialsConfig
 
 
 class LLM:
     def __init__(
-        self, credentials: CredentialsWordWare, project_config: ProjectConfigWordWare
+        self, credentials: CredentialsConfig, project_config: PromptsConfig
     ):
         self.credentials = credentials
         self.configuration = project_config

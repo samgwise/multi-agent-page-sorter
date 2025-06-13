@@ -1,0 +1,8 @@
+[initial_prompts]
+all = ""
+
+[discussion_prompts]
+decide = "Demo {page} - {history}"
+propose = ""
+query = ""
+respond = ""
